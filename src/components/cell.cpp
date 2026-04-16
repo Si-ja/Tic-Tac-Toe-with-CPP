@@ -1,6 +1,6 @@
 #include <iostream>
 #include "cell.h"
-#include "../algorithms/blank.h"
+#include "../logic/blank.h"
 
 void Cell::printConfirmation() const
 {

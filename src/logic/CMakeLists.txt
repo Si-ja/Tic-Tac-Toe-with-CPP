@@ -1,1 +1,1 @@
-add_library(algorithms STATIC blank.cpp)
+add_library(logic STATIC blank.cpp)
