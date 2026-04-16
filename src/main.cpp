@@ -3,6 +3,7 @@
 #include <iostream>
 #include "components/field.h"
 #include "components/piece_states.h"
+#include "logic/key_reading.h"
 
 int main()
 {
@@ -19,6 +20,13 @@ int main()
     Components::Field* field{ new Components::Field {} };
     field->init();
     field->printFields();
+
+    Logic::PlayerActions currentActions { Logic::PlayerActions::Unknown };
+    // Prompt the user to enter information until we understand what they are doing
+    while (currentActions == Logic::PlayerActions::Unknown)
+    {
+        currentActions = Logic::getKeyStroke();
+    }
 
     // Cleanup all resources (a bit of an overkill, but a good practice)
     field->cleanUp();

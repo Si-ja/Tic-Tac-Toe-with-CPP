@@ -1,6 +1,7 @@
 #include <iostream>
 #include "field.h"
 #include "piece_states.h"
+#include "../logic/utils.h"
 
 void Components::Field::init()
 {
@@ -21,14 +22,8 @@ void Components::Field::cleanUp()
 
 void Components::Field::printFields()
 {
-    // First clear screen in a terminal. Since we are platform specific, it looks a bit ugly.
-    #if defined _WIN32
-        system("cls");
-    #elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
-        system("clear");
-    #elif defined (__APPLE__)
-        system("clear");
-    #endif
+    // First clean the screen
+    Logic::clearTerminal();
 
     // We know for sure the array is only 9 elements long, we can utilize it to draw it
     // in a 3x3 grid
@@ -56,4 +51,7 @@ void Components::Field::printFields()
                 << " | ";
         }
     }
+    
+    // Clear everything from the buffer
+    std::cout << std::endl;
 }
