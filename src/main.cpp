@@ -29,7 +29,15 @@ int main()
     while (currentActions == Logic::PlayerActions::Unknown || isPlayersTurn)
     {
         currentActions = Logic::getKeyStroke();
-        field->moveCursor(currentActions);
+        if (currentActions == Logic::PlayerActions::Enter)
+        {
+            isPlayersTurn = not (field->applyX());
+        }
+        else
+        {
+            field->moveCursor(currentActions);
+        }
+
         field->printFields();
     }
 

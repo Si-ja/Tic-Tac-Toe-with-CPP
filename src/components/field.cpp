@@ -94,6 +94,19 @@ void Components::Field::moveCursor(const Logic::PlayerActions direction)
     cells[current_selected_cell].fg = Components::getFGColorString(Components::Color::black);
 }
 
+bool Components::Field::applyX()
+{
+    if (cells[current_selected_cell].piece == "_")
+    {
+        cells[current_selected_cell].piece = "X";
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void Components::Field::printFields()
 {
     // First clean the screen

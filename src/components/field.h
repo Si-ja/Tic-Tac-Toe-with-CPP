@@ -19,6 +19,11 @@ namespace Components
         /// @brief Print the structure of the fields for the player to see.
         void printFields();
 
+        /// @brief Try to apply players X value onto the field that they have chosen.
+        /// @return Confirmation of true/false that the value was applied. Some might be 
+        /// occupied already and cannot be replaced again.
+        bool applyX();
+
         /// @brief Move cursor on a playingfield to where the player wants to move.
         /// @param direction indication where the player needs to move further.
         void moveCursor(const Logic::PlayerActions direction);
