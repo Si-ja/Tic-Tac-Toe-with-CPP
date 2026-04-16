@@ -20,6 +20,7 @@ int main()
     // ================= MAIN CODE
     // Initialize the game with empty fields
     Components::Field* field{ new Components::Field {} };
+    field->init();
     field->printFields();
 
     return EXIT_SUCCESS; 

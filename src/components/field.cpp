@@ -2,6 +2,17 @@
 #include "field.h"
 #include "piece_states.h"
 
+void Components::Field::init()
+{
+    // The center field is always #5. When indexed, that's 4.
+    // So it needs to be visible as a selection.
+    // The player can move from there. As we are dealing with structs on our choice
+    // we can set certainn members of their directly, no need for setters and getters.
+
+    cells[4].bg = Components::getBGColorString(Components::Color::red);
+    cells[4].fg = Components::getFGColorString(Components::Color::black);
+}
+
 void Components::Field::printFields()
 {
     // First clear screen in a terminal. Since we are platform specific, it looks a bit ugly.
