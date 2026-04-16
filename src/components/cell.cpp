@@ -2,7 +2,7 @@
 #include "cell.h"
 #include "../logic/blank.h"
 
-void Cell::printConfirmation() const
+void Components::Cell::printConfirmation() const
 {
     std::cout << "I have been created" << std::endl;
     printSomething();
