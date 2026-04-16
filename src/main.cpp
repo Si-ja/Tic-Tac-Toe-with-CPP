@@ -21,11 +21,16 @@ int main()
     field->init();
     field->printFields();
 
+    // Initialize the state of the player
     Logic::PlayerActions currentActions { Logic::PlayerActions::Unknown };
+    bool isPlayersTurn { true };
+
     // Prompt the user to enter information until we understand what they are doing
-    while (currentActions == Logic::PlayerActions::Unknown)
+    while (currentActions == Logic::PlayerActions::Unknown || isPlayersTurn)
     {
         currentActions = Logic::getKeyStroke();
+        field->moveCursor(currentActions);
+        field->printFields();
     }
 
     // Cleanup all resources (a bit of an overkill, but a good practice)

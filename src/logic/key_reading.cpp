@@ -22,7 +22,7 @@ Logic::PlayerActions Logic::getKeyStroke()
 
         case 's':
         case 'S':
-            return Logic::PlayerActions::Up;
+            return Logic::PlayerActions::Down;
 
         case 'a':
         case 'A':
