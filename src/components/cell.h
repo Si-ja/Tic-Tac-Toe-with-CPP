@@ -7,7 +7,7 @@ namespace Components
 {
     struct Cell
     {
-        std::string_view piece { " " };
+        std::string_view piece { "_" };
 
         std::string_view fg { "\033[0m" };
         std::string_view bg { "\033[0m" };

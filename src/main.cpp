@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <iostream>
-#include "components/cell.h"
+// #include "components/cell.h"
+#include "components/field.h"
 #include "components/piece_states.h"
 
 int main()
@@ -13,8 +14,13 @@ int main()
         << Components::getBGColorString(Components::Color::clear) 
         << Components::getFGColorString(Components::Color::clear) 
         << std::endl;
-    Components::Cell cell{ "h" };
+    // Components::Cell cell{ "h" };
     // cell.printConfirmation();
+
+    // ================= MAIN CODE
+    // Initialize the game with empty fields
+    Components::Field* field{ new Components::Field {} };
+    field->printFields();
 
     return EXIT_SUCCESS; 
 }

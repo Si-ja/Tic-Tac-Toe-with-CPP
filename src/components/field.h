@@ -8,7 +8,10 @@ namespace Components
 {
     struct Field
     {
-        std::array<Cell, 9> field {};
+        Components::Cell* cells { new Components::Cell[9] {} };
+
+        /// @brief Print the structure of the fields for the player to see.
+        void printFields();
     };
 }
 
