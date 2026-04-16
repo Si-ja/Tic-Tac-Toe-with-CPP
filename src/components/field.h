@@ -16,6 +16,10 @@ namespace Components
 
         /// @brief Print the structure of the fields for the player to see.
         void printFields();
+
+        /// @brief Delete all components that the struct refers to
+        /// so nothing is left dangling. Maybe this should have been a class...
+        void cleanUp();
     };
 }
 

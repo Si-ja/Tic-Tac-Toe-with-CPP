@@ -11,8 +11,6 @@ namespace Components
 
         std::string_view fg { "\033[0m" };
         std::string_view bg { "\033[0m" };
-
-        void printConfirmation() const;
     };
 }
 

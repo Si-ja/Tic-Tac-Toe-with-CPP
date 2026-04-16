@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <iostream>
-// #include "components/cell.h"
 #include "components/field.h"
 #include "components/piece_states.h"
 
@@ -14,14 +13,16 @@ int main()
         << Components::getBGColorString(Components::Color::clear) 
         << Components::getFGColorString(Components::Color::clear) 
         << std::endl;
-    // Components::Cell cell{ "h" };
-    // cell.printConfirmation();
 
     // ================= MAIN CODE
     // Initialize the game with empty fields
     Components::Field* field{ new Components::Field {} };
     field->init();
     field->printFields();
+
+    // Cleanup all resources (a bit of an overkill, but a good practice)
+    field->cleanUp();
+    delete field;
 
     return EXIT_SUCCESS; 
 }

@@ -13,6 +13,12 @@ void Components::Field::init()
     cells[4].fg = Components::getFGColorString(Components::Color::black);
 }
 
+void Components::Field::cleanUp()
+{
+    if (cells)
+        delete cells;
+}
+
 void Components::Field::printFields()
 {
     // First clear screen in a terminal. Since we are platform specific, it looks a bit ugly.
