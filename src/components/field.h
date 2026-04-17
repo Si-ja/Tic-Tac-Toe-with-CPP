@@ -25,7 +25,7 @@ namespace Components
         /// @brief Try to apply players X value onto the field that they have chosen.
         /// @return Confirmation of true/false that the value was applied. Some might be 
         /// occupied already and cannot be replaced again.
-        bool applyX();
+        bool applyX() const;
 
         /// @brief Move cursor on a playingfield to where the player wants to move.
         /// @param direction indication where the player needs to move further.

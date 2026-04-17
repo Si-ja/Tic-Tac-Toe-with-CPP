@@ -111,7 +111,7 @@ void Components::Field::moveCursor(const Logic::PlayerActions direction)
     getCells()[getCurrentSelectedCell()].fg = Components::getFGColorString(Components::Color::black);
 }
 
-bool Components::Field::applyX()
+bool Components::Field::applyX() const
 {
     if (getCells()[getCurrentSelectedCell()].piece == "_")
     {
