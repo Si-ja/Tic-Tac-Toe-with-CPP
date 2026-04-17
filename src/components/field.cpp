@@ -4,22 +4,39 @@
 #include "../logic/utils.h"
 #include "../logic/key_reading.h"
 
-void Components::Field::init()
+Components::Field::Field()
 {
-    // The center field is always #5. When indexed, that's 4.
-    // So it needs to be visible as a selection.
-    // The player can move from there. As we are dealing with structs on our choice
-    // we can set certainn members of their directly, no need for setters and getters.
-    // Hopefully 4 hasn't been ofset right from the start for some reason.
-
-    cells[current_selected_cell].bg = Components::getBGColorString(Components::Color::red);
-    cells[current_selected_cell].fg = Components::getFGColorString(Components::Color::black);
+    setCurrentSelectedCell(4);
+    getCells()[getCurrentSelectedCell()].bg = Components::getBGColorString(Components::Color::red);
+    getCells()[getCurrentSelectedCell()].fg = Components::getFGColorString(Components::Color::black);
 }
 
-void Components::Field::cleanUp()
+Components::Field::Field(int current_selected_cell = 4)
+    : m_current_selected_cell { current_selected_cell }
 {
-    if (cells)
-        delete cells;
+    getCells()[getCurrentSelectedCell()].bg = Components::getBGColorString(Components::Color::red);
+    getCells()[getCurrentSelectedCell()].fg = Components::getFGColorString(Components::Color::black);
+};
+
+Components::Field::~Field()
+{
+    if (m_cells)
+        delete m_cells;
+}
+
+Components::Cell* Components::Field::getCells() const
+{
+    return m_cells;
+}
+
+int Components::Field::getCurrentSelectedCell() const
+{
+    return m_current_selected_cell;
+}
+
+void Components::Field::setCurrentSelectedCell(const int new_current_selected_cell)
+{
+    m_current_selected_cell = new_current_selected_cell;
 }
 
 void Components::Field::moveCursor(const Logic::PlayerActions direction)
@@ -33,72 +50,72 @@ void Components::Field::moveCursor(const Logic::PlayerActions direction)
     }
 
     // Applying the coloring of a default state to the currently selected field
-    cells[current_selected_cell].bg = Components::getBGColorString(Components::Color::clear);
-    cells[current_selected_cell].fg = Components::getFGColorString(Components::Color::clear);
+    getCells()[getCurrentSelectedCell()].bg = Components::getBGColorString(Components::Color::clear);
+    getCells()[getCurrentSelectedCell()].fg = Components::getFGColorString(Components::Color::clear);
 
     // Figure out where the movement is done on a 2D plane in terms of 1D array
     if (direction == Logic::PlayerActions::Down)
     {
-        if (current_selected_cell >= 0 && current_selected_cell <= 5)
+        if (getCurrentSelectedCell() >= 0 && getCurrentSelectedCell() <= 5)
         {
-            current_selected_cell += 3;
+            setCurrentSelectedCell(getCurrentSelectedCell() + 3);
         }
         else
         {
-            current_selected_cell -= 6;
+            setCurrentSelectedCell(getCurrentSelectedCell() - 6);
         }    
     }
 
     if (direction == Logic::PlayerActions::Up)
     {
-        if (current_selected_cell >= 3 && current_selected_cell <= 8)
+        if (getCurrentSelectedCell() >= 3 && getCurrentSelectedCell() <= 8)
         {
-            current_selected_cell -= 3;
+            setCurrentSelectedCell(getCurrentSelectedCell() - 3);
         }
         else
         {
-            current_selected_cell += 6;
+            setCurrentSelectedCell(getCurrentSelectedCell() + 6);
         }    
     }
 
     if (direction == Logic::PlayerActions::Left)
     {
-        if (current_selected_cell == 0 ||
-            current_selected_cell == 3 ||
-            current_selected_cell == 6)
+        if (getCurrentSelectedCell() == 0 ||
+            getCurrentSelectedCell() == 3 ||
+            getCurrentSelectedCell() == 6)
         {
-            current_selected_cell += 2;
+            setCurrentSelectedCell(getCurrentSelectedCell() + 2);
         }
         else
         {
-            current_selected_cell -= 1;
+            setCurrentSelectedCell(getCurrentSelectedCell() - 1);
         }
     }
 
     if (direction == Logic::PlayerActions::Right)
     {
-        if (current_selected_cell == 2 ||
-            current_selected_cell == 5 ||
-            current_selected_cell == 8)
+        if (getCurrentSelectedCell() == 2 ||
+            getCurrentSelectedCell() == 5 ||
+            getCurrentSelectedCell() == 8)
         {
-            current_selected_cell -= 2;
+            setCurrentSelectedCell(getCurrentSelectedCell() - 2);;
         }
         else
         {
-            current_selected_cell += 1;
+            setCurrentSelectedCell(getCurrentSelectedCell() + 1);;
         }
     }
 
     // Colorize the new selection now
-    cells[current_selected_cell].bg = Components::getBGColorString(Components::Color::red);
-    cells[current_selected_cell].fg = Components::getFGColorString(Components::Color::black);
+    getCells()[getCurrentSelectedCell()].bg = Components::getBGColorString(Components::Color::red);
+    getCells()[getCurrentSelectedCell()].fg = Components::getFGColorString(Components::Color::black);
 }
 
 bool Components::Field::applyX()
 {
-    if (cells[current_selected_cell].piece == "_")
+    if (getCells()[getCurrentSelectedCell()].piece == "_")
     {
-        cells[current_selected_cell].piece = "X";
+        getCells()[getCurrentSelectedCell()].piece = "X";
         return true;
     }
     else
@@ -118,9 +135,9 @@ void Components::Field::printFields()
     {
         std::cout
             << "_"
-            << cells[i].bg
-            << cells[i].fg
-            << cells[i].piece
+            << getCells()[i].bg
+            << getCells()[i].fg
+            << getCells()[i].piece
             << Components::getBGColorString(Components::Color::clear)
             << Components::getFGColorString(Components::Color::clear)
             << "_";

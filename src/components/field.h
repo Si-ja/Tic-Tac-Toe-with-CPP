@@ -7,14 +7,17 @@
 
 namespace Components
 {
-    struct Field
+    class Field
     {
-        Components::Cell* cells { new Components::Cell[9] {} };
-        int current_selected_cell { 4 }; // defaults to 4 as it's the center of the field;
+    public:
+        Field();
+        Field(int current_selected_cell);
+        ~Field();
 
-        /// @brief A very vague description, but this should initialize the visuals on the
-        /// field, as in the players cursor will be visible in the center of the board.
-        void init();
+        Components::Cell* getCells() const;
+        int getCurrentSelectedCell() const;
+
+        void setCurrentSelectedCell(const int new_current_selected_cell);
 
         /// @brief Print the structure of the fields for the player to see.
         void printFields();
@@ -28,9 +31,9 @@ namespace Components
         /// @param direction indication where the player needs to move further.
         void moveCursor(const Logic::PlayerActions direction);
 
-        /// @brief Delete all components that the struct refers to
-        /// so nothing is left dangling. Maybe this should have been a class...
-        void cleanUp();
+    private:
+        Components::Cell* m_cells { new Components::Cell[9] {} };
+        int m_current_selected_cell { 4 }; // defaults to 4 as it's the center of the field;
     };
 }
 
