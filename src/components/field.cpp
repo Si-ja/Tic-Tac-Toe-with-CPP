@@ -114,9 +114,9 @@ void Components::Field::moveCursor(const Logic::PlayerActions direction)
 
 bool Components::Field::applyX() const
 {
-    if (getCells()[getCurrentSelectedCell()].piece == "_")
+    if (getCells()[getCurrentSelectedCell()].piece == Components::NOTHING)
     {
-        getCells()[getCurrentSelectedCell()].piece = "X";
+        getCells()[getCurrentSelectedCell()].piece = Components::X;
         return true;
     }
     else
@@ -137,9 +137,9 @@ void Components::Field::makeOponentMove()
 
     while (attemptsMade < 9)
     {
-        if (getCells()[randomCell].piece == "_")
+        if (getCells()[randomCell].piece == Components::NOTHING)
         {
-            getCells()[randomCell].piece = "O";
+            getCells()[randomCell].piece = Components::O;
             return;
         }
         else
@@ -210,42 +210,42 @@ Components::Winners Components::Field::checkWinningConditions() const
     
     // Horizontal checks
     if ((
-            getCells()[0].piece == "X" && 
-            getCells()[1].piece == "X" &&
-            getCells()[2].piece == "X"
+            getCells()[0].piece == Components::X && 
+            getCells()[1].piece == Components::X &&
+            getCells()[2].piece == Components::X
         ) 
         ||
         (
-            getCells()[3].piece == "X" && 
-            getCells()[4].piece == "X" &&
-            getCells()[5].piece == "X"
+            getCells()[3].piece == Components::X && 
+            getCells()[4].piece == Components::X &&
+            getCells()[5].piece == Components::X
         ) 
         ||
         (
-            getCells()[6].piece == "X" && 
-            getCells()[7].piece == "X" &&
-            getCells()[8].piece == "X"
+            getCells()[6].piece == Components::X && 
+            getCells()[7].piece == Components::X &&
+            getCells()[8].piece == Components::X
         ))
     {
         winner = Components::Winners::Player;
     }
 
     if ((
-            getCells()[0].piece == "O" && 
-            getCells()[1].piece == "O" &&
-            getCells()[2].piece == "O"
+            getCells()[0].piece == Components::O && 
+            getCells()[1].piece == Components::O &&
+            getCells()[2].piece == Components::O
         ) 
         ||
         (
-            getCells()[3].piece == "O" && 
-            getCells()[4].piece == "O" &&
-            getCells()[5].piece == "O"
+            getCells()[3].piece == Components::O && 
+            getCells()[4].piece == Components::O &&
+            getCells()[5].piece == Components::O
         ) 
         ||
         (
-            getCells()[6].piece == "O" && 
-            getCells()[7].piece == "O" &&
-            getCells()[8].piece == "O"
+            getCells()[6].piece == Components::O && 
+            getCells()[7].piece == Components::O &&
+            getCells()[8].piece == Components::O
         ))
     {
         winner = Components::Winners::Opponent;
@@ -253,42 +253,42 @@ Components::Winners Components::Field::checkWinningConditions() const
 
     // Vertical checks
     if ((
-            getCells()[0].piece == "X" && 
-            getCells()[3].piece == "X" &&
-            getCells()[6].piece == "X"
+            getCells()[0].piece == Components::X && 
+            getCells()[3].piece == Components::X &&
+            getCells()[6].piece == Components::X
         ) 
         ||
         (
-            getCells()[1].piece == "X" && 
-            getCells()[4].piece == "X" &&
-            getCells()[7].piece == "X"
+            getCells()[1].piece == Components::X && 
+            getCells()[4].piece == Components::X &&
+            getCells()[7].piece == Components::X
         ) 
         ||
         (
-            getCells()[2].piece == "X" && 
-            getCells()[5].piece == "X" &&
-            getCells()[8].piece == "X"
+            getCells()[2].piece == Components::X && 
+            getCells()[5].piece == Components::X &&
+            getCells()[8].piece == Components::X
         ))
     {
         winner = Components::Winners::Player;
     }
 
     if ((
-            getCells()[0].piece == "O" && 
-            getCells()[3].piece == "O" &&
-            getCells()[6].piece == "O"
+            getCells()[0].piece == Components::O && 
+            getCells()[3].piece == Components::O &&
+            getCells()[6].piece == Components::O
         ) 
         ||
         (
-            getCells()[1].piece == "O" && 
-            getCells()[4].piece == "O" &&
-            getCells()[7].piece == "O"
+            getCells()[1].piece == Components::O && 
+            getCells()[4].piece == Components::O &&
+            getCells()[7].piece == Components::O
         ) 
         ||
         (
-            getCells()[2].piece == "O" && 
-            getCells()[5].piece == "O" &&
-            getCells()[8].piece == "O"
+            getCells()[2].piece == Components::O && 
+            getCells()[5].piece == Components::O &&
+            getCells()[8].piece == Components::O
         ))
     {
         winner = Components::Winners::Opponent;
@@ -296,30 +296,30 @@ Components::Winners Components::Field::checkWinningConditions() const
 
     // Diagonal checks
     if ((
-            getCells()[0].piece == "X" && 
-            getCells()[4].piece == "X" &&
-            getCells()[8].piece == "X"
+            getCells()[0].piece == Components::X && 
+            getCells()[4].piece == Components::X &&
+            getCells()[8].piece == Components::X
         ) 
         ||
         (
-            getCells()[2].piece == "X" && 
-            getCells()[4].piece == "X" &&
-            getCells()[6].piece == "X"
+            getCells()[2].piece == Components::X && 
+            getCells()[4].piece == Components::X &&
+            getCells()[6].piece == Components::X
         ))
     {
         winner = Components::Winners::Player;
     }
 
     if ((
-            getCells()[0].piece == "O" && 
-            getCells()[4].piece == "O" &&
-            getCells()[8].piece == "O"
+            getCells()[0].piece == Components::O && 
+            getCells()[4].piece == Components::O &&
+            getCells()[8].piece == Components::O
         ) 
         ||
         (
-            getCells()[2].piece == "O" && 
-            getCells()[4].piece == "O" &&
-            getCells()[6].piece == "O"
+            getCells()[2].piece == Components::O && 
+            getCells()[4].piece == Components::O &&
+            getCells()[6].piece == Components::O
         ))
     {
         winner = Components::Winners::Opponent;

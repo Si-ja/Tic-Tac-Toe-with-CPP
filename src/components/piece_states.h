@@ -7,6 +7,7 @@ namespace Components
 {
     static const std::string_view X { "X" };
     static const std::string_view O { "O" };
+    static const std::string_view NOTHING { "_" };
 
     enum class Color
     {
