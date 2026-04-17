@@ -21,9 +21,11 @@ namespace Components
         Field(int current_selected_cell);
         ~Field();
 
+        // Getters
         Components::Cell* getCells() const;
         int getCurrentSelectedCell() const;
 
+        // Setters
         void setCurrentSelectedCell(const int new_current_selected_cell);
 
         /// @brief Print the structure of the fields for the player to see.
@@ -54,7 +56,7 @@ namespace Components
 
     private:
         Components::Cell* m_cells { new Components::Cell[9] {} };
-        int m_current_selected_cell { 4 }; // defaults to 4 as it's the center of the field;
+        int m_current_selected_cell;
     };
 }
 

@@ -12,7 +12,7 @@ int main()
     Visuals::printLogo();
     std::this_thread::sleep_for(std::chrono::seconds(3));
 
-    // ================= MAIN CODE
+    // ================= MAIN CODE =================
     // Initialize the game with empty fields
     Components::Field* field{ new Components::Field {} };
     field->printFields();
@@ -47,10 +47,9 @@ int main()
         {
             field->makeOponentMove();
             isPlayersTurn = true;
+            field->printFields();
+            winner = field->checkWinningConditions();
         }
-
-        field->printFields();
-        winner = field->checkWinningConditions();
     }
 
     field->printWinner(winner);
