@@ -30,6 +30,18 @@ int main()
         }
 
         field->printFields();
+
+        // TODO: check if the game is over and someone has won
+
+        if (!isPlayersTurn)
+        {
+            field->makeOponentMove();
+            isPlayersTurn = true;
+        }
+
+        field->printFields();
+
+        // TODO: check if the game is over and someone has won
     }
 
     // Cleanup all resources (a bit of an overkill, but a good practice)

@@ -124,6 +124,31 @@ bool Components::Field::applyX()
     }
 }
 
+void Components::Field::makeOponentMove()
+{
+    // Logic of the oponents is that movements are random. But if the random move is pre-occupied
+    // then the oponent will just move to the next field. This is done so we don't get stuck in
+    // an infinite loop of random value potentially never giving us the only free field available.
+    // Also, quit after 9 unsuccessful tries. Likely if we reached them it means something went
+    // wrong and realisttically this conditions should never be invoked.
+    int attemptsMade { 0 };
+    int randomCell { Logic::getRandomBoardMove() };
+
+    while (attemptsMade < 9)
+    {
+        if (getCells()[randomCell].piece == "_")
+        {
+            getCells()[randomCell].piece = "O";
+            return;
+        }
+        else
+        {
+            attemptsMade++;
+            randomCell = (randomCell + 1) % 9; // We increment movements and make sure we loop in our cells array
+        }
+    }
+}
+
 void Components::Field::printFields()
 {
     // First clean the screen

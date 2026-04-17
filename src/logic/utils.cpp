@@ -20,3 +20,12 @@ void Logic::clearTerminalLine()
         << "\x1b[2K"  // Clean the line
         << "\r";      // Go to the beginning of the line
 }
+
+int Logic::getRandomBoardMove()
+{
+    // Values will be generated random on each run
+    // Ref: https://www.w3schools.com/cpp/cpp_howto_random_number.asp
+    srand(time(0));
+
+    return rand() % 9;
+}
