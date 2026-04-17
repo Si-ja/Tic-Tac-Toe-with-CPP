@@ -14,10 +14,11 @@ int main()
 
     // Initialize the state of the player
     Logic::PlayerActions currentActions { Logic::PlayerActions::Unknown };
+    Components::Winners winner { Components::Winners::None };
     bool isPlayersTurn { true };
 
     // Prompt the user to enter information until we understand what they are doing
-    while (currentActions == Logic::PlayerActions::Unknown || isPlayersTurn)
+    while (currentActions == Logic::PlayerActions::Unknown || winner == Components::Winners::None)
     {
         currentActions = Logic::getKeyStroke();
         if (currentActions == Logic::PlayerActions::Enter)
@@ -30,8 +31,7 @@ int main()
         }
 
         field->printFields();
-
-        // TODO: check if the game is over and someone has won
+        winner = field->checkWinningConditions();
 
         if (!isPlayersTurn)
         {
@@ -40,9 +40,10 @@ int main()
         }
 
         field->printFields();
-
-        // TODO: check if the game is over and someone has won
+        winner = field->checkWinningConditions();
     }
+
+    field->printWinner(winner);
 
     // Cleanup all resources (a bit of an overkill, but a good practice)
     delete field;

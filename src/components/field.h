@@ -7,6 +7,13 @@
 
 namespace Components
 {
+    enum class Winners
+    {
+        None,
+        Player,
+        Opponent
+    };
+
     class Field
     {
     public:
@@ -36,6 +43,14 @@ namespace Components
         /// try to make the move regardless of the situation. They will quit after trying all
         /// fields, but its more of a safety measure than actual meaningful logic.
         void makeOponentMove();
+
+        /// @brief Check if anyone has won the game.
+        /// @return An enum indicator if someone has won the game.
+        Components::Winners checkWinningConditions() const;
+
+        /// @brief Winner is printed if one is found in the game.
+        /// @param winner the current winner state.
+        void printWinner(const Components::Winners winner);
 
     private:
         Components::Cell* m_cells { new Components::Cell[9] {} };

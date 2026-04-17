@@ -149,6 +149,23 @@ void Components::Field::makeOponentMove()
     }
 }
 
+void Components::Field::printWinner(const Components::Winners winner)
+{
+    switch (winner)
+    {
+        case Components::Winners::Player:
+            std::cout << "Player has won!" << std::endl;
+            break;
+        
+        case Components::Winners::Opponent:
+            std::cout << "Opponent has won!" << std::endl;
+            break;
+
+        default:
+            break;
+    }
+}
+
 void Components::Field::printFields()
 {
     // First clean the screen
@@ -183,4 +200,129 @@ void Components::Field::printFields()
     
     // Clear everything from the buffer
     std::cout << std::endl;
+}
+
+Components::Winners Components::Field::checkWinningConditions() const
+{
+    // There's a limitted amount of winning conditions, so all of them need to be checked.
+    Components::Winners winner { Components::Winners::None };
+    
+    // Horizontal checks
+    if ((
+            getCells()[0].piece == "X" && 
+            getCells()[1].piece == "X" &&
+            getCells()[2].piece == "X"
+        ) 
+        ||
+        (
+            getCells()[3].piece == "X" && 
+            getCells()[4].piece == "X" &&
+            getCells()[5].piece == "X"
+        ) 
+        ||
+        (
+            getCells()[6].piece == "X" && 
+            getCells()[7].piece == "X" &&
+            getCells()[8].piece == "X"
+        ))
+    {
+        winner = Components::Winners::Player;
+    }
+
+    if ((
+            getCells()[0].piece == "O" && 
+            getCells()[1].piece == "O" &&
+            getCells()[2].piece == "O"
+        ) 
+        ||
+        (
+            getCells()[3].piece == "O" && 
+            getCells()[4].piece == "O" &&
+            getCells()[5].piece == "O"
+        ) 
+        ||
+        (
+            getCells()[6].piece == "O" && 
+            getCells()[7].piece == "O" &&
+            getCells()[8].piece == "O"
+        ))
+    {
+        winner = Components::Winners::Opponent;
+    }
+
+    // Vertical checks
+    if ((
+            getCells()[0].piece == "X" && 
+            getCells()[3].piece == "X" &&
+            getCells()[6].piece == "X"
+        ) 
+        ||
+        (
+            getCells()[1].piece == "X" && 
+            getCells()[4].piece == "X" &&
+            getCells()[7].piece == "X"
+        ) 
+        ||
+        (
+            getCells()[2].piece == "X" && 
+            getCells()[5].piece == "X" &&
+            getCells()[8].piece == "X"
+        ))
+    {
+        winner = Components::Winners::Player;
+    }
+
+    if ((
+            getCells()[0].piece == "O" && 
+            getCells()[3].piece == "O" &&
+            getCells()[6].piece == "O"
+        ) 
+        ||
+        (
+            getCells()[1].piece == "O" && 
+            getCells()[4].piece == "O" &&
+            getCells()[7].piece == "O"
+        ) 
+        ||
+        (
+            getCells()[2].piece == "O" && 
+            getCells()[5].piece == "O" &&
+            getCells()[8].piece == "O"
+        ))
+    {
+        winner = Components::Winners::Opponent;
+    }
+
+    // Diagonal checks
+    if ((
+            getCells()[0].piece == "X" && 
+            getCells()[4].piece == "X" &&
+            getCells()[8].piece == "X"
+        ) 
+        ||
+        (
+            getCells()[2].piece == "X" && 
+            getCells()[4].piece == "X" &&
+            getCells()[6].piece == "X"
+        ))
+    {
+        winner = Components::Winners::Player;
+    }
+
+    if ((
+            getCells()[0].piece == "O" && 
+            getCells()[4].piece == "O" &&
+            getCells()[8].piece == "O"
+        ) 
+        ||
+        (
+            getCells()[2].piece == "O" && 
+            getCells()[4].piece == "O" &&
+            getCells()[6].piece == "O"
+        ))
+    {
+        winner = Components::Winners::Opponent;
+    }
+
+    return winner;
 }
