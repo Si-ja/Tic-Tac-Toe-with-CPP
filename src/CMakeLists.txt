@@ -5,6 +5,8 @@ project(tictactoe_cpp)
 
 add_subdirectory(components)
 add_subdirectory(logic)
+add_subdirectory(visuals)
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} PUBLIC components)
 target_link_libraries(${PROJECT_NAME} PUBLIC logic)
+target_link_libraries(${PROJECT_NAME} PUBLIC visuals)

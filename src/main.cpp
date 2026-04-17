@@ -1,12 +1,17 @@
-#include <iostream>
 #include <cstdlib>
-#include <iostream>
+#include <chrono>
+#include <thread>
 #include "components/field.h"
 #include "components/piece_states.h"
 #include "logic/key_reading.h"
+#include  "visuals/visuals.h"
 
 int main()
 {
+    // Somewhat great the player
+    Visuals::printLogo();
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
     // ================= MAIN CODE
     // Initialize the game with empty fields
     Components::Field* field{ new Components::Field {} };
@@ -32,6 +37,11 @@ int main()
 
         field->printFields();
         winner = field->checkWinningConditions();
+
+        if (winner != Components::Winners::None)
+        {
+            continue;
+        }
 
         if (!isPlayersTurn)
         {

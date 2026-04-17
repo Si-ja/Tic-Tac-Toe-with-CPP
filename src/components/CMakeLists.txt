@@ -1,1 +1,4 @@
-add_library(components STATIC cell.cpp field.cpp piece_states.cpp)
+add_library(components STATIC 
+    cell.cpp
+    field.cpp
+    piece_states.cpp)

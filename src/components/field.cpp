@@ -3,6 +3,7 @@
 #include "piece_states.h"
 #include "../logic/utils.h"
 #include "../logic/key_reading.h"
+#include "../visuals/visuals.h"
 
 Components::Field::Field()
 {
@@ -154,11 +155,11 @@ void Components::Field::printWinner(const Components::Winners winner)
     switch (winner)
     {
         case Components::Winners::Player:
-            std::cout << "Player has won!" << std::endl;
+            Visuals::printWinnerPlayer();
             break;
         
         case Components::Winners::Opponent:
-            std::cout << "Opponent has won!" << std::endl;
+            Visuals::printWinnerOpponent();
             break;
 
         default:
