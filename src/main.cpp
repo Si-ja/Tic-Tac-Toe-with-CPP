@@ -15,7 +15,7 @@ int main()
 
     // ================= MAIN CODE =================
     // Initialize the game with empty fields
-    std::unique_ptr<Components::Field> field { new Components::Field() };
+    std::unique_ptr field { std::make_unique<Components::Field>() };
     field->printFields();
 
     // Initialize the state of the player
