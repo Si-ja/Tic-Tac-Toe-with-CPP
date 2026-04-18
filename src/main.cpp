@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <chrono>
 #include <thread>
+#include <memory>
 #include "components/field.h"
 #include "components/piece_states.h"
 #include "logic/key_reading.h"
@@ -14,7 +15,7 @@ int main()
 
     // ================= MAIN CODE =================
     // Initialize the game with empty fields
-    Components::Field* field{ new Components::Field {} };
+    std::unique_ptr<Components::Field> field { new Components::Field() };
     field->printFields();
 
     // Initialize the state of the player
@@ -53,9 +54,6 @@ int main()
     }
 
     field->printWinner(winner);
-
-    // Cleanup all resources (a bit of an overkill, but a good practice)
-    delete field;
 
     return EXIT_SUCCESS; 
 }
