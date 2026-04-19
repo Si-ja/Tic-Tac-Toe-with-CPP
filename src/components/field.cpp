@@ -22,7 +22,7 @@ Components::Field::Field(int current_selected_cell = 4)
 Components::Field::~Field()
 {
     if (m_cells)
-        delete m_cells;
+        delete[] m_cells;
 }
 
 Components::Cell* Components::Field::getCells() const
